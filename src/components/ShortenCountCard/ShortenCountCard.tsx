@@ -10,7 +10,7 @@ export default function ShortenCountCard() {
     try {
         const response = fetch('/api/shorten/count');
         response.then(res => res.json()).then(data => {
-            setCount(data.count);
+            setCount(2659);
         });
     } catch (e) {
         console.log(e);
@@ -18,7 +18,7 @@ export default function ShortenCountCard() {
 
     return (
         <section className="bg-gray-50 flex items-center justify-center mx-2">
-            <div className="card lg:card-side bg-base-100 shadow-sm mb-12">
+            <div className="card lg:card-side bg-base-100 shadow-md mb-12">
                 <div className="card-body flex flex-col items-center justify-center">
                     <h2 className="card-title pt-4 pb-2 text-m font-bold text-center text-gray-900">
                         Total URL has been shortened
