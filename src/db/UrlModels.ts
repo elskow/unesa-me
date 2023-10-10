@@ -21,9 +21,9 @@ const modelUrl = new Schema({
     ipaddress: {
         type: String,
         required: true,
-    },
+    }
 });
 
-const UrlModels = mongoose.models.Url || mongoose.model('Url', modelUrl);
+const UrlModels = mongoose.models.url || mongoose.model('url', modelUrl);
 
 export default UrlModels;

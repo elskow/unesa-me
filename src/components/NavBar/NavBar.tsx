@@ -18,20 +18,28 @@ export default function NavBar() {
     };
 
     const addBorder = scroll
-        ? 'border-b-2 border-gray-200 shadow-sm border-opacity-50'
+        ? 'border-b-3 border-gray-200 shadow-lg border-opacity-20 transition duration-500 ease-in-out'
         : '';
 
     return (
-        <nav className={`bg-gray-50 fixed top-0 w-full z-10 ${addBorder}`}>
+        <nav className={`bg-blue-900 fixed top-0 w-full z-10 ${addBorder}`}>
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <div className="container mx-auto px-12">
+                <div className="container mx-auto md:flex md:flex-wrap md:items-center justify-between">
                     <a href="/">
                         <img
-                            src="/logo.png"
-                            className="h-10 m-auto"
+                            src="/logo-white.png"
+                            className="h-8 m-auto hover:opacity-90"
                             alt="unesa-link-logo"
                         />
                     </a>
+                    <div className="justify-between items-center gap-4 my-1 hidden md:flex">
+                        <a href="https://unesa.ac.id/" target="_blank" className="text-white font-bold text-sm hover:text-gray-200">
+                            UNESA
+                        </a>
+                        <a href="https://sso.unesa.ac.id/" target="_blank" className= "text-white font-bold text-sm hover:text-gray-200">
+                            SSO
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>

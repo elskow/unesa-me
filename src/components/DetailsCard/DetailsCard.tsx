@@ -30,19 +30,21 @@ export default function DetailsCard({ longURL, unique }) {
     }
 
     return (
-        <section className="bg-gray-50 flex items-center justify-center">
-            <div className="bg-white p-8 rounded-lg shadow-md md:w-4/6 mb-12">
-                <div className="alert alert-success p-4 mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span>Your URL has been shortened!</span>
-                </div>
-                <div className="mb-4">
-                    <label
-                        className="block text-l text-gray-700 text-sm font-bold mb-2"
-                        htmlFor="longURL"
-                    >
-                        Long URL
-                    </label>
+        <section className="bg-gray-50 flex items-center justify-center mx-2">
+            <div className="card lg:card-side bg-base-100 shadow-xl mb-12">
+                <figure className="p-2">
+                    <QRCode
+                        id="qr-gen"
+                        value={shortenedURL}
+                        size={232}
+                        level={'H'}
+                        includeMargin={true}
+                    />
+                </figure>
+                <div className="card-body flex flex-col items-center justify-center">
+                    <h2 className="card-title pt-4 pb-2 text-m font-bold text-center text-gray-900">
+                        Your URL has been shortened!
+                    </h2>
                     <input
                         className="appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="longURL"
@@ -50,14 +52,6 @@ export default function DetailsCard({ longURL, unique }) {
                         value={longURL}
                         readOnly
                     />
-                </div>
-                <div className="mb-4">
-                    <label
-                        className="block text-l text-gray-700 text-sm font-bold mb-2"
-                        htmlFor="shortURL"
-                    >
-                        Shortened URL
-                    </label>
                     <div className="flex items-center">
                         <input
                             className="appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -67,36 +61,21 @@ export default function DetailsCard({ longURL, unique }) {
                             readOnly
                         />
                         <button
-                            className="bg-blue-600 hover:bg-blue-700 text-white rounded px-3 py-3 ml-2"
+                            className="btn ml-2 py-3 px-3"
                             onClick={copyToClipboard}
                         >
                             Copy
                         </button>
                     </div>
-                </div>
-                <div className="mb-4">
-                    <label
-                        className="block text-l text-gray-700 text-sm font-bold mb-2"
-                        htmlFor="longURL"
-                    >
-                        QR Code
-                    </label>
-                    <QRCode
-                        id="qr-gen"
-                        value={shortenedURL}
-                        size={182}
-                        level={'H'}
-                        includeMargin={true}
-                    />
-                </div>
-                <div className="flex items-center justify-between mt-4">
-                    <a
-                        href="../../"
-                        className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="submit"
-                    >
-                        Short another URL
-                    </a>
+                    <div className="card-actions">
+                        <a
+                            href="../../"
+                            className="btn btn-primary mt-4 border-cyan-50 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="submit"
+                        >
+                            Create Another
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

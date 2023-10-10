@@ -13,6 +13,7 @@ export default function Form() {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isFetching, setIsFetching] = useState(false);
     const [token, setToken] = useState('');
+    
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -50,6 +51,11 @@ export default function Form() {
                     title: 'Error',
                     text: `There was an error shortening the URL. ${errorMessage}`,
                 });
+
+                setIsSubmitted(false);
+                setIsFetching(false);
+
+                window.location.reload();
             }
         } catch (error) {
             console.error('Error:', error);
@@ -68,7 +74,7 @@ export default function Form() {
     const handleCustomAddressChange = (
         e: React.ChangeEvent<HTMLInputElement>,
     ) => {
-        if (e.target.value === '') {
+        if (e.target.value === '' && isSubmitted) {
             setCustomAddress(randomUrlGenerator(6));
         } else {
             setCustomAddress(e.target.value);
@@ -80,8 +86,8 @@ export default function Form() {
             {isSubmitted ? (
                 <DetailsCard longURL={longURL} unique={customAddress} />
             ) : (
-                <section className="bg-gray-50 flex items-center justify-center mx-2">
-                    <div className="bg-white p-8 rounded-lg shadow-md md:w-4/6 mb-12">
+                <section className="bg-gray-50 flex items-center justify-center mx-2 py-5">
+                    <div className="bg-white p-8 rounded-lg shadow-lg md:w-4/6 mb-12">
                         <h2 className="text-2xl font-bold mb-4 text-gray-800">
                             Shorten Your URL
                         </h2>
@@ -102,8 +108,8 @@ export default function Form() {
                                     required={true}
                                 />
                             </div>
-                            <div className="mb-4">
-                                <div className={'w-full'}>
+                            <div className="mb-4 flex flex-wrap">
+                                <div className="w-full">
                                     <label
                                         className="block text-l text-gray-700 text-sm font-bold mb-2"
                                         htmlFor="customAddress2"
@@ -112,7 +118,7 @@ export default function Form() {
                                     </label>
                                     <input
                                         className={
-                                            'input input-bordered inline-flex appearance-none focus:shadow-outline'
+                                            'input input-bordered inline-flex appearance-none focus:shadow-outline w-fit mr-1'
                                         }
                                         id="customAddress1"
                                         type="text"
@@ -125,7 +131,7 @@ export default function Form() {
                                     />
                                     <input
                                         className={
-                                            'input inline w-fit border rounded text-gray-700 leading-tight' +
+                                            'input inline w-fit lg:w-4/6 border rounded text-gray-700 leading-tight' +
                                             ' focus:outline-none focus:shadow-outline appearance-none input-bordered'
                                         }
                                         id="customAddress2"
@@ -139,7 +145,7 @@ export default function Form() {
                             </div>
 
                             <div
-                                className="alert alert-info p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-200 border border-green-300"
+                                className="alert alert-info p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-200 border border-green-300 flex items-center"
                                 role="alert"
                             >
                                 <svg
@@ -199,10 +205,10 @@ export default function Form() {
                             ) : (
                                 <div className="flex items-center justify-between mt-4">
                                     <button
-                                        className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                        className="bg-blue-700 hover:bg-blue-900 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline font-bold tracking-tighter"
                                         type="submit"
                                     >
-                                        Shorten URL
+                                        Shorten!
                                     </button>
                                 </div>
                             )}
