@@ -16,10 +16,12 @@ export default function Form() {
     const [isFetching, setIsFetching] = useState(false);
     const [token, setToken] = useState('');
 
-    let currentURL = useRef();
+    let currentURL = useRef('https://unesa.me');
     useEffect(() => {
-        // @ts-ignore
-        currentURL.current = window.location.origin;
+        // currentURL.current = window.location.origin;
+        if (typeof window !== 'undefined') {
+            currentURL.current = window.location.origin;
+        }
     }, []);
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -63,7 +65,7 @@ export default function Form() {
                 setIsSubmitted(false);
                 setIsFetching(false);
 
-                window.location.reload();
+                window.turnstile?.reset();
             }
         } catch (error) {
             await Swal.fire({
@@ -71,6 +73,11 @@ export default function Form() {
                 title: 'Network Error',
                 text: 'There was a network error. Please try again later.',
             });
+
+            setIsSubmitted(false);
+            setIsFetching(false);
+
+            window.turnstile?.reset();
         }
     };
 
@@ -88,6 +95,45 @@ export default function Form() {
         }
     };
 
+    const handleCheckAvailability = async ( e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch('/api/check', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    customAddress,
+                }),
+            });
+
+            if (response.ok) {
+                await response.json();
+                await Swal.fire({
+                    icon: 'success',
+                    title: 'Available',
+                    text: 'Your custom address is available!',
+                });
+            } else {
+                const errorData = await response.json();
+                const errorMessage = errorData.message;
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'Unavailable',
+                    text: `${errorMessage}`,
+                });
+            }
+        } catch (error) {
+            await Swal.fire({
+                icon: 'error',
+                title: 'Network Error',
+                text: 'There was a network error. Please try again later.',
+            });
+        }
+    }
+
     return (
         <>
             {isSubmitted ? (
@@ -98,8 +144,8 @@ export default function Form() {
                                  mode={"sync"}>
                     <motion.div
                         initial={{opacity: 0, filter: 'blur(10px)'}}
-                        animate={{opacity: 1, filter: 'blur(0px)', transition: {delay: 0.5, ease: 'easeInOut'}}}
-                        exit={{opacity: 0, filter: 'blur(10px)', transition: {delay: 0.5, ease: 'easeInOut'}}}
+                        animate={{opacity: 1, filter: 'blur(0px)', transition: {delay: 0.2, ease: 'easeInOut'}}}
+                        exit={{opacity: 0, filter: 'blur(10px)', transition: {delay: 0.2, ease: 'easeInOut'}}}
                     >
                         <section className="bg-gray-50 flex items-center justify-center mx-2 py-5">
                             <div className="card bg-white p-8 rounded-lg shadow-lg md:w-4/6 mb-12">
@@ -132,7 +178,7 @@ export default function Form() {
                                                 Custom Link <span className="text-gray-500">(optional)</span>
                                             </label>
                                             <div className='input-group'>
-                                                <span>
+                                                <span className="w-2/6">
                                                     {currentURL.current}/
                                                 </span>
                                                 <input
@@ -144,6 +190,12 @@ export default function Form() {
                                                     placeholder="your-custom-link (alphanumeric only)"
                                                     onChange={handleCustomAddressChange}
                                                 />
+                                                <button
+                                                    className="btn glass ml-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/6 font-sans normal-case lg:w-auto"
+                                                    onClick={handleCheckAvailability}
+                                                >
+                                                    Check
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -209,7 +261,7 @@ export default function Form() {
                                     ) : (
                                         <div className="flex items-center justify-between mt-4">
                                             <button
-                                                className="bg-blue-700 hover:bg-blue-900 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline font-bold tracking-tighter"
+                                                className="button bg-blue-700 hover:bg-blue-900 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline font-bold tracking-tighter"
                                                 type="submit"
                                             >
                                                 Shorten!

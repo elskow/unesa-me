@@ -1,4 +1,4 @@
-import {NextResponse} from 'next/server';
+import  {NextResponse} from 'next/server';
 import {nanoid} from 'nanoid';
 
 import connectMongoDB from '@/utils/connectMongoDb';
