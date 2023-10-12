@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, {Schema} from 'mongoose';
 
 const modelUrl = new Schema({
     unique: {
@@ -21,7 +21,7 @@ const modelUrl = new Schema({
     ipaddress: {
         type: String,
         required: true,
-    }
+    },
 });
 
 const UrlModels = mongoose.models.url || mongoose.model('url', modelUrl);

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 
 export default function NavBar() {
     useEffect(() => {
@@ -30,13 +30,18 @@ export default function NavBar() {
                             src="/logo-white.png"
                             className="h-8 m-auto hover:opacity-90"
                             alt="unesa-link-logo"
+                            height={32}
                         />
                     </a>
-                    <div className="justify-between items-center gap-4 my-1 hidden md:flex">
-                        <a href="https://unesa.ac.id/" target="_blank" className="text-white font-bold text-sm hover:text-gray-200">
+                    <div className="justify-between items-center gap-4 my-3 hidden md:flex">
+                        <a href="https://unesa.ac.id/"
+                           target="_blank"
+                           className="text-white font-bold text-sm hover:text-gray-200">
                             UNESA
                         </a>
-                        <a href="https://sso.unesa.ac.id/" target="_blank" className= "text-white font-bold text-sm hover:text-gray-200">
+                        <a href="https://sso.unesa.ac.id/"
+                           target="_blank"
+                           className="text-white font-bold text-sm hover:text-gray-200">
                             SSO
                         </a>
                     </div>

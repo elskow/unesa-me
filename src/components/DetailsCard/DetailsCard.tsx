@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import QRCode from 'qrcode.react';
 
 // @ts-ignore
-export default function DetailsCard({ longURL, unique }) {
+export default function DetailsCard({longURL, unique}) {
     const shortenedURL = `${
         typeof window !== 'undefined' ? window.location.origin : ''
     }/${unique}`;

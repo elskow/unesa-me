@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import { nanoid } from 'nanoid';
+import {NextResponse} from 'next/server';
+import {nanoid} from 'nanoid';
 
 import connectMongoDB from '@/utils/connectMongoDb';
 import UrlModels from '@/db/UrlModels';
@@ -14,8 +14,8 @@ export async function POST(request: Request) {
 
         if (!requestData.url && !requestData.token) {
             return NextResponse.json(
-                { message: 'Invalid parameters' },
-                { status: 400 },
+                {message: 'Invalid parameters'},
+                {status: 400},
             );
         }
 
@@ -34,8 +34,8 @@ export async function POST(request: Request) {
             });
         } else {
             return NextResponse.json(
-                { message: 'Invalid secret key' },
-                { status: 400 },
+                {message: 'Invalid secret key'},
+                {status: 400},
             );
         }
 
@@ -61,8 +61,8 @@ export async function POST(request: Request) {
 
                 if (existingUrl) {
                     return NextResponse.json(
-                        { message: 'Custom unique already exists' },
-                        { status: 400 },
+                        {message: 'Custom unique already exists'},
+                        {status: 400},
                     );
                 }
 
@@ -76,19 +76,19 @@ export async function POST(request: Request) {
             });
 
             return NextResponse.json(
-                { message: 'Success shorten URL', data: query },
-                { status: 200 },
+                {message: 'Success shorten URL', data: query},
+                {status: 200},
             );
         } else {
             return NextResponse.json(
-                { message: 'Cant confirmation your security code' },
-                { status: 400 },
+                {message: 'Cant confirmation your security code'},
+                {status: 400},
             );
         }
     } catch (error) {
         return NextResponse.json(
-            { message: 'Internal server error' },
-            { status: 500 },
+            {message: 'Internal server error'},
+            {status: 500},
         );
     }
 }

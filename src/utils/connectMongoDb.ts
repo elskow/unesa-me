@@ -5,8 +5,7 @@ const connectMongoDB = async () => {
         // @ts-ignore
         await mongoose.connect(process.env.MONGODB_URL);
     } catch (error) {
-        console.error('MongoDB connection error:', error);
-        console.log('Here is the MONGODB_URL:', process.env.MONGODB_URL);
+        console.log(error);
     }
 };
 

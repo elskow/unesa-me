@@ -1,9 +1,9 @@
-import PageIndex from '@/components/PageIndex/PageIndex';
+import PageIndex from '@/pages/PageIndex/PageIndex';
 
 export default function Home() {
     return (
         <>
-            <PageIndex />
+            <PageIndex/>
         </>
     );
 }
