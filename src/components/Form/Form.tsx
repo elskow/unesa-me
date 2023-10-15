@@ -1,13 +1,12 @@
 'use client';
 
-import React, {useEffect, useRef, useState} from 'react';
-import {Turnstile} from '@marsidev/react-turnstile';
+import React, { useEffect, useRef, useState } from 'react';
+import { Turnstile } from '@marsidev/react-turnstile';
 import Swal from 'sweetalert2';
-import {AnimatePresence, motion} from "framer-motion";
+import { AnimatePresence, motion } from 'framer-motion';
 
 import DetailsCard from '@/components/DetailsCard/DetailsCard';
 import randomUrlGenerator from '@/utils/randomUrlGenerator';
-
 
 export default function Form() {
     const [longURL, setLongURL] = useState('');
@@ -95,7 +94,9 @@ export default function Form() {
         }
     };
 
-    const handleCheckAvailability = async ( e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleCheckAvailability = async (
+        e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    ) => {
         e.preventDefault();
 
         try {
@@ -132,20 +133,26 @@ export default function Form() {
                 text: 'There was a network error. Please try again later.',
             });
         }
-    }
+    };
 
     return (
         <>
             {isSubmitted ? (
-                <DetailsCard longURL={longURL}
-                             unique={customAddress}/>
+                <DetailsCard longURL={longURL} unique={customAddress} />
             ) : (
-                <AnimatePresence initial={true}
-                                 mode={"sync"}>
+                <AnimatePresence initial={true} mode={'sync'}>
                     <motion.div
-                        initial={{opacity: 0, filter: 'blur(10px)'}}
-                        animate={{opacity: 1, filter: 'blur(0px)', transition: {delay: 0.2, ease: 'easeInOut'}}}
-                        exit={{opacity: 0, filter: 'blur(10px)', transition: {delay: 0.2, ease: 'easeInOut'}}}
+                        initial={{ opacity: 0, filter: 'blur(10px)' }}
+                        animate={{
+                            opacity: 1,
+                            filter: 'blur(0px)',
+                            transition: { delay: 0.2, ease: 'easeInOut' },
+                        }}
+                        exit={{
+                            opacity: 0,
+                            filter: 'blur(10px)',
+                            transition: { delay: 0.2, ease: 'easeInOut' },
+                        }}
                     >
                         <section className="bg-gray-50 flex items-center justify-center mx-2 py-5">
                             <div className="card bg-white p-8 rounded-lg shadow-lg md:w-4/6 mb-12">
@@ -175,9 +182,12 @@ export default function Form() {
                                                 className="block text-l text-gray-700 text-sm font-bold mb-2"
                                                 htmlFor="customAddress2"
                                             >
-                                                Custom Link <span className="text-gray-500">(optional)</span>
+                                                Custom Link{' '}
+                                                <span className="text-gray-500">
+                                                    (optional)
+                                                </span>
                                             </label>
-                                            <div className='input-group'>
+                                            <div className="input-group">
                                                 <span className="w-2/6">
                                                     {currentURL.current}/
                                                 </span>
@@ -188,11 +198,15 @@ export default function Form() {
                                                     value={customAddress}
                                                     pattern="^[a-zA-Z0-9]*$" // alphanumeric only
                                                     placeholder="your-custom-link (alphanumeric only)"
-                                                    onChange={handleCustomAddressChange}
+                                                    onChange={
+                                                        handleCustomAddressChange
+                                                    }
                                                 />
                                                 <button
                                                     className="btn glass ml-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/6 font-sans normal-case lg:w-auto"
-                                                    onClick={handleCheckAvailability}
+                                                    onClick={
+                                                        handleCheckAvailability
+                                                    }
                                                 >
                                                     Check
                                                 </button>
@@ -227,9 +241,13 @@ export default function Form() {
                                                 .NEXT_PUBLIC_TURNSTILE_SITE_KEY as string
                                         }
                                         onSuccess={setToken}
+                                        onError={() => {} /* do nothing */}
                                         options={{
                                             theme: 'light',
+                                            size: 'normal',
+                                            language: 'en',
                                         }}
+                                        as="button"
                                     />
                                     {isFetching ? (
                                         <div className="flex items-center justify-between mt-4">
