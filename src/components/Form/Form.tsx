@@ -188,7 +188,7 @@ export default function Form() {
                                                 </span>
                                             </label>
                                             <div className="input-group">
-                                                <span className="w-2/6">
+                                                <span className="w-2/6 whitespace-nowrap overflow-ellipsis overflow-hidden">
                                                     {currentURL.current}/
                                                 </span>
                                                 <input
