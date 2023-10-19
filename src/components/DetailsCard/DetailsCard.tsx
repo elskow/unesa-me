@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import QRCode from 'qrcode.react';
+import { QRCode } from 'react-qrcode-logo';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // @ts-ignore
@@ -53,8 +53,14 @@ export default function DetailsCard({ longURL, unique }) {
                                     id="qr-gen"
                                     value={shortenedURL}
                                     size={232}
-                                    level={'H'}
-                                    includeMargin={true}
+                                    logoWidth={64}
+                                    logoHeight={64}
+                                    logoImage={'unesa-logo.png'}
+                                    logoPaddingStyle="square"
+                                    qrStyle="dots"
+                                    fgColor="#000"
+                                    bgColor="#fff"
+                                    style={{ width: '100%' }}
                                 />
                             </figure>
                             <div className="card-body flex flex-col items-center justify-center">
