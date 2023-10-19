@@ -7,7 +7,7 @@ export default function PageIndex() {
     return (
         <div className="min-h-screen justify-between flex flex-col max-w-screen bg-gray-50">
             <NavBar />
-            <div className="flex flex-col max-w-screen my-1 md:my-3">
+            <div className="flex flex-col max-w-screen my-1 md:my-3 lg:min-h-screen">
                 <Hero />
                 <Form />
             </div>
