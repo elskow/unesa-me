@@ -156,19 +156,19 @@ export default function Form() {
                     >
                         <section className="bg-gray-50 flex items-center justify-center mx-2 py-5">
                             <div className="card bg-white p-8 rounded-lg shadow-lg md:w-4/6 mb-12">
-                                <h2 className="card-title text-2xl font-bold mb-4 text-gray-800">
+                                <h2 className="card-title text-xl lg:text-2xl font-bold mb-4 text-gray-800">
                                     Shorten Your URL
                                 </h2>
                                 <form onSubmit={handleFormSubmit}>
                                     <div className="mb-4">
                                         <label
-                                            className="block text-l text-gray-700 text-sm font-bold mb-2"
+                                            className="block text-sm lg:text-base text-gray-700 font-bold mb-2"
                                             htmlFor="longURL"
                                         >
                                             Your Long URL
                                         </label>
                                         <input
-                                            className="input input-bordered appearance-none border rounded-lg w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            className="input text-sm lg:text-base input-bordered appearance-none border rounded-lg w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                             id="longURL"
                                             type="url"
                                             placeholder="https://example.com"
@@ -182,20 +182,20 @@ export default function Form() {
                                     <div className="mb-4 flex flex-wrap">
                                         <div className="w-full">
                                             <label
-                                                className="block text-l text-gray-700 text-sm font-bold mb-2"
+                                                className="block text-sm lg:text-base text-gray-700 font-bold mb-2"
                                                 htmlFor="customAddress2"
                                             >
                                                 Custom Link{' '}
-                                                <span className="text-gray-500">
+                                                <span className="text-xs text-gray-500">
                                                     (optional)
                                                 </span>
                                             </label>
                                             <div className="input-group">
-                                                <span className="w-2/6 whitespace-nowrap overflow-ellipsis overflow-hidden text-gray-600 bg-gray-100 rounded-l-lg px-3 py-3 flex items-center">
+                                                <span className="text-sm lg:text-base w-2/6 whitespace-nowrap overflow-ellipsis overflow-hidden text-gray-600 bg-gray-100 rounded-l-lg px-3 py-3 flex items-center">
                                                     {currentURL.current}/
                                                 </span>
                                                 <input
-                                                    className="input input-bordered appearance-none border rounded-lg w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    className="text-sm lg:text-base input input-bordered appearance-none border rounded-lg w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                     id="customAddress2"
                                                     type="text"
                                                     value={customAddress}
@@ -209,7 +209,7 @@ export default function Form() {
                                                     }}
                                                 />
                                                 <button
-                                                    className="btn glass ml-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/6 font-sans normal-case lg:w-auto"
+                                                    className="text-sm lg:text-base btn glass ml-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/6 font-sans normal-case lg:w-auto"
                                                     onClick={
                                                         handleCheckAvailability
                                                     }
@@ -237,7 +237,7 @@ export default function Form() {
                                                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                                             ></path>
                                         </svg>
-                                        <span className="ml-2">
+                                        <span className="text-sm lg:text-l ml-2">
                                             Your link will be saved for 30 days.
                                         </span>
                                     </div>
@@ -285,7 +285,7 @@ export default function Form() {
                                     ) : (
                                         <div className="flex items-center justify-between mt-4">
                                             <button
-                                                className="button bg-blue-700 hover:bg-blue-900 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline font-bold tracking-tighter"
+                                                className="text-base lg:text-l button bg-blue-700 hover:bg-blue-900 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline font-bold tracking-tighter"
                                                 type="submit"
                                             >
                                                 Shorten!
