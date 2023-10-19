@@ -174,6 +174,9 @@ export default function Form() {
                                             placeholder="https://example.com"
                                             onChange={handleLongURLChange}
                                             required={true}
+                                            style={{
+                                                backgroundColor: '#fff',
+                                            }}
                                         />
                                     </div>
                                     <div className="mb-4 flex flex-wrap">
@@ -188,7 +191,7 @@ export default function Form() {
                                                 </span>
                                             </label>
                                             <div className="input-group">
-                                                <span className="w-2/6 whitespace-nowrap overflow-ellipsis overflow-hidden">
+                                                <span className="w-2/6 whitespace-nowrap overflow-ellipsis overflow-hidden text-gray-600 bg-gray-100 rounded-l-lg px-3 py-3 flex items-center">
                                                     {currentURL.current}/
                                                 </span>
                                                 <input
@@ -201,6 +204,9 @@ export default function Form() {
                                                     onChange={
                                                         handleCustomAddressChange
                                                     }
+                                                    style={{
+                                                        backgroundColor: '#fff',
+                                                    }}
                                                 />
                                                 <button
                                                     className="btn glass ml-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/6 font-sans normal-case lg:w-auto"

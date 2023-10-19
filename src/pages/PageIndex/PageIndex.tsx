@@ -6,12 +6,12 @@ import Footer from '@/components/Footer/Footer';
 export default function PageIndex() {
     return (
         <div className="min-h-screen justify-between flex flex-col max-w-screen bg-gray-50">
-            <NavBar/>
+            <NavBar />
             <div className="flex flex-col max-w-screen my-1 md:my-3">
-                <Hero/>
-                <Form/>
+                <Hero />
+                <Form />
             </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 }
