@@ -17,7 +17,6 @@ export default function Form() {
 
     let currentURL = useRef('https://unesa.me');
     useEffect(() => {
-        // currentURL.current = window.location.origin;
         if (typeof window !== 'undefined') {
             currentURL.current = window.location.origin;
         }
@@ -167,7 +166,7 @@ export default function Form() {
                                         >
                                             Your Long URL
                                         </label>
-                                        <input
+                                        <motion.input
                                             className="input text-sm lg:text-base input-bordered appearance-none border rounded-lg w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                             id="longURL"
                                             type="url"
@@ -176,6 +175,19 @@ export default function Form() {
                                             required={true}
                                             style={{
                                                 backgroundColor: '#fff',
+                                            }}
+                                            initial={{
+                                                backgroundColor: '#fff',
+                                            }}
+                                            animate={{
+                                                backgroundColor: '#fff',
+                                            }}
+                                            whileFocus={{
+                                                backgroundColor: '#E8F9FD',
+                                            }}
+                                            transition={{
+                                                duration: 0.2,
+                                                ease: 'easeInOut',
                                             }}
                                         />
                                     </div>
@@ -194,7 +206,7 @@ export default function Form() {
                                                 <span className="text-sm lg:text-base w-2/6 whitespace-nowrap overflow-ellipsis overflow-hidden text-gray-600 bg-gray-100 rounded-l-lg px-3 py-3 flex items-center">
                                                     {currentURL.current}/
                                                 </span>
-                                                <input
+                                                <motion.input
                                                     className="text-sm lg:text-base input input-bordered appearance-none border rounded-lg w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                     id="customAddress2"
                                                     type="text"
@@ -206,6 +218,20 @@ export default function Form() {
                                                     }
                                                     style={{
                                                         backgroundColor: '#fff',
+                                                    }}
+                                                    initial={{
+                                                        backgroundColor: '#fff',
+                                                    }}
+                                                    animate={{
+                                                        backgroundColor: '#fff',
+                                                    }}
+                                                    whileFocus={{
+                                                        backgroundColor:
+                                                            '#E8F9FD',
+                                                    }}
+                                                    transition={{
+                                                        duration: 0.2,
+                                                        ease: 'easeInOut',
                                                     }}
                                                 />
                                                 <button
