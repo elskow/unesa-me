@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
-import { nanoid } from 'nanoid';
 
 import connectMongoDB from '@/utils/connectMongoDb';
 import UrlModels from '@/db/UrlModels';
 import { verifyToken } from '@/utils/tokenVerifier';
+import getIpAddress from '@/utils/getIpAddress';
+import generateUnique from '@/utils/uniqueUrl';
 
 async function createShortUrl(requestData: any): Promise<any> {
     if (!requestData.url || !requestData.token) {
@@ -16,29 +17,13 @@ async function createShortUrl(requestData: any): Promise<any> {
     if (!isTokenValid) {
         throw new Error('Cannot confirm your security code');
     }
-
-    const ipaddressRes = await fetch('https://api.ipify.org?format=json');
-    const { ip: ipaddress } = await ipaddressRes.json();
-
     await connectMongoDB();
 
-    let unique;
-    const { url, customAddress } = requestData;
-
-    if (!customAddress) {
-        unique = nanoid(5);
-    } else {
-        const existingUrl = await UrlModels.findOne({ unique: customAddress });
-
-        if (existingUrl) {
-            throw new Error('Custom unique already exists');
-        }
-
-        unique = customAddress;
-    }
+    const ipaddress = await getIpAddress();
+    const unique = await generateUnique(requestData.customAddress);
 
     const query = await UrlModels.create({
-        url,
+        url: requestData.url,
         unique,
         ipaddress,
     });
