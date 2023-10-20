@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
+import {NextResponse} from 'next/server';
 
 import connectMongoDB from '@/utils/connectMongoDb';
 import UrlModels from '@/db/UrlModels';
-import { verifyToken } from '@/utils/tokenVerifier';
+import {verifyToken} from '@/utils/tokenVerifier';
 import getIpAddress from '@/utils/getIpAddress';
 import generateUnique from '@/utils/uniqueUrl';
 
@@ -22,13 +22,11 @@ async function createShortUrl(requestData: any): Promise<any> {
     const ipaddress = await getIpAddress();
     const unique = await generateUnique(requestData.customAddress);
 
-    const query = await UrlModels.create({
+    return await UrlModels.create({
         url: requestData.url,
         unique,
         ipaddress,
     });
-
-    return query;
 }
 
 export async function POST(request: Request) {
@@ -40,7 +38,7 @@ export async function POST(request: Request) {
             { message: 'Success shorten URL', data },
             { status: 200 },
         );
-    } catch (error) {
+    } catch (error: any) {
         const message = error.message || 'Internal server error';
         const status = error.status || 500;
 
